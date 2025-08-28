@@ -1,0 +1,27 @@
+Package: PLIER2Data
+Type: Package
+Title: Experiment Data for the PLIER2 Package
+Version: 1.0.0
+Authors@R: person("Marc", "Subirana-Granes", role = c("aut", "cre"),
+    email = "mb2subi@gmail.com",
+    comment = c(ORCID = "0000-0003-3934-839X"))
+Description: Contains RNA-Seq and metadata files used as examples in the
+    vignettes of the PLIER2 Bioconductor package. The data includes a
+    whole-blood expression matrix, an HDF5 file with Alzheimer's brain
+    samples, and count data from a study on pancreatic islets. These
+    datasets support the primary software package's documentation.
+License: GPL-3
+Encoding: UTF-8
+URL: https://github.com/pivlab/PLIER2Data
+BugReports: https://github.com/pivlab/PLIER2Data/issues
+VignetteBuilder: knitr
+biocViews:
+    ExperimentData,
+    ExpressionData,
+    RNASeqData,
+    Homo_sapiens_Data
+Suggests:
+    PLIER2,
+    knitr,
+    rmarkdown,
+    BiocStyle
