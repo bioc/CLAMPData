@@ -1,27 +1,28 @@
-Package: PLIER2Data
+Package: CLAMPData
 Type: Package
-Title: Experiment Data for the PLIER2 Package
-Version: 1.0.0
-Authors@R: person("Marc", "Subirana-Granes", role = c("aut", "cre"),
-    email = "mb2subi@gmail.com",
-    comment = c(ORCID = "0000-0003-3934-839X"))
-Description: Contains RNA-Seq and metadata files used as examples in the
-    vignettes of the PLIER2 Bioconductor package. The data includes a
-    whole-blood expression matrix, an HDF5 file with Alzheimer's brain
-    samples, and count data from a study on pancreatic islets. These
-    datasets support the primary software package's documentation.
-License: GPL-3
+Title: Experiment Data for CLAMP Latent Variables and Priors
+Version: 0.99.0
+Authors@R:
+    c(person(given = "Marc", family = "Subirana-Granés",
+             role = c("aut", "cre"),
+             email = "mb2subi@gmail.com"))
+Description: Curated CLAMP resources (latent variables, loadings,
+    priors, and example matrices) for use with the CLAMP package,
+    distributed via ExperimentHub.
+License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/pivlab/PLIER2Data
-BugReports: https://github.com/pivlab/PLIER2Data/issues
-VignetteBuilder: knitr
-biocViews:
-    ExperimentData,
-    ExpressionData,
-    RNASeqData,
-    Homo_sapiens_Data
+LazyData: false
+Depends:
+    R (>= 4.4)
+Imports:
+    ExperimentHub (>= 2.14.0),
+    utils
 Suggests:
-    PLIER2,
+    ExperimentHubData,
     knitr,
-    rmarkdown,
-    BiocStyle
+    rmarkdown
+VignetteBuilder: knitr
+biocViews: ExperimentData, ExperimentHub, GeneExpression, RNASeq,
+    Transcriptomics, SoftwareData
+BugReports: https://github.com/pivlab/CLAMPData/issues
+URL: https://github.com/pivlab/CLAMPData
