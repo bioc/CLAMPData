@@ -1,6 +1,6 @@
 Package: CLAMPData
 Type: Package
-Title: Experiment Data for CLAMP Latent Variables and Priors
+Title: Experiment data for CLAMP package
 Version: 0.99.0
 Authors@R:
     c(person(given = "Marc", family = "Subirana-Granés",
@@ -13,9 +13,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
 Depends:
-    R (>= 4.4)
+    R (>= 4.3.0)
 Imports:
-    ExperimentHub (>= 2.14.0),
+    ExperimentHub,
     utils
 Suggests:
     ExperimentHubData,
@@ -26,3 +26,4 @@ biocViews: ExperimentData, ExperimentHub, GeneExpression, RNASeq,
     Transcriptomics, SoftwareData
 BugReports: https://github.com/pivlab/CLAMPData/issues
 URL: https://github.com/pivlab/CLAMPData
+RoxygenNote: 7.3.3
