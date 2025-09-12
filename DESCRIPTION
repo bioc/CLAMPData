@@ -22,8 +22,7 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-biocViews: ExperimentData, ExperimentHub, GeneExpression, RNASeq,
-    Transcriptomics, SoftwareData
+biocViews: ExperimentHub, ExperimentData, RNASeqData, ExpressionData
 BugReports: https://github.com/pivlab/CLAMPData/issues
 URL: https://github.com/pivlab/CLAMPData
 RoxygenNote: 7.3.3
