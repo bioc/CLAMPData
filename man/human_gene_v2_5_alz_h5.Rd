@@ -23,4 +23,8 @@ human_gene_v2_5_alz_h5
 \description{
 A brief description of this dataset
 }
+\examples{
+data(human_gene_v2_5_alz_h5)
+head(human_gene_v2_5_alz_h5)
+}
 \keyword{datasets}

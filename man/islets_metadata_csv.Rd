@@ -23,4 +23,8 @@ islets_metadata_csv
 \description{
 A brief description of this dataset
 }
+\examples{
+data(islets_metadata_csv)
+head(islets_metadata_csv)
+}
 \keyword{datasets}

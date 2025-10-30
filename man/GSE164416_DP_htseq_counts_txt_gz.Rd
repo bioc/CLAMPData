@@ -23,4 +23,8 @@ GSE164416_DP_htseq_counts_txt_gz
 \description{
 A brief description of this dataset
 }
+\examples{
+data(GSE164416_DP_htseq_counts_txt_gz)
+head(GSE164416_DP_htseq_counts_txt_gz)
+}
 \keyword{datasets}
