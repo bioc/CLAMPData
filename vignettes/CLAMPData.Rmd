@@ -19,66 +19,60 @@ library(ExperimentHub)
 
 # Introduction
 
-This vignette demonstrates how to access data resources provided by **CLAMPData** through the [ExperimentHub](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html) interface.  
-If resources are not yet registered (e.g., before public upload), the code will safely skip and print informative messages.
+This vignette demonstrates how to access data resources provided by **CLAMPData** through the [ExperimentHub](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html) interface. 
 
-# Listing resources
+# Accessing data resources
 
 ```{r list, message=FALSE, warning=FALSE}
-# Initialize ExperimentHub
-eh <- ExperimentHub::ExperimentHub()
-
-# Try listing available resources for this package
-resources <- tryCatch(
-  ExperimentHub::listResources(eh, package = "CLAMPData"),
-  error = function(e) {
-    message("ExperimentHub resources not yet available (likely pre-publication).")
-    return(NULL)
-  }
-)
-
-if (!is.null(resources)) {
-  resources
-} else {
-  cat("No registered resources yet. This vignette was likely built before data upload.\n")
-}
-```
-
-# Accessing data files
-
-```{r accessors, message=FALSE, warning=FALSE}
-# Safely try to access resources (works after ExperimentHub upload)
 if (exists("GSE164416_DP_htseq_counts_txt_gz", where = "package:CLAMPData")) {
+  
+  # 1. Raw Counts Data (gzipped text file)
   p_counts <- try(GSE164416_DP_htseq_counts_txt_gz(), silent = TRUE)
+  
+  # 2. H5 Pathway Priors Data (HDF5 file)
   p_h5     <- try(human_gene_v2_5_alz_h5(), silent = TRUE)
+  
+  # 3. Sample Metadata (CSV file)
   p_meta   <- try(islets_metadata_csv(), silent = TRUE)
 
   if (!inherits(p_counts, "try-error")) {
-    c(p_counts, p_h5, p_meta)
+    
+    cat("--- Successfully retrieved file paths ---\n")
+    cat("Counts path:", p_counts, "\n")
+    cat("H5 path:", p_h5, "\n")
+    cat("Metadata path:", p_meta, "\n")
+    
   } else {
     cat("Accessors not yet functional — package likely built before data registration.\n")
   }
 } else {
-  cat("Accessors not yet available in this build.\n")
+  cat("Accessor functions not yet available in this build.\n")
 }
 ```
 
 # Reading example data
 
-```{r read, message=FALSE, warning=FALSE}
-# Example of how data will be read once published
+```{r accessors, message=FALSE, warning=FALSE}
 if (exists("p_counts") && !inherits(p_counts, "try-error")) {
-  # counts
+  
+  ## 1. Reading the counts file (gzipped)
+  cat("\n--- Counts File Preview (GSE164416) ---\n")
   readLines(gzfile(p_counts), n = 5)
 
-  # HDF5
-  if (requireNamespace("rhdf5", quietly = TRUE))
+  ## 2. Inspecting the HDF5 file structure
+  if (requireNamespace("rhdf5", quietly = TRUE)) {
+    cat("\n--- HDF5 File Structure (human_gene_v2_5_alz_h5) ---\n")
     rhdf5::h5ls(p_h5)
+  } else {
+    message("\nrhdf5 package is required to inspect the H5 file.")
+  }
 
-  # metadata CSV
+  ## 3. Reading the metadata CSV
+  cat("\n--- Metadata Preview (islets_metadata) ---\n")
   head(read.csv(p_meta, stringsAsFactors = FALSE))
+  
 } else {
-  cat("Example file reading skipped (resources not yet available).\n")
+  cat("Example file reading skipped (resources not yet available or functional).\n")
 }
 ```
 

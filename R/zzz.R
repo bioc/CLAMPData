@@ -1,63 +1,46 @@
 #' GSE164416_DP_htseq_counts_txt_gz
 #'
-#' A brief description of this dataset
+#' Retrieves the raw count matrix (path to gzipped file) for the GSE164416 dataset from ExperimentHub.
 #'
-#' @format ## `GSE164416_DP_htseq_counts_txt_gz()`
-#' A data frame with x,xxx rows and xx columns:
-#' \describe{
-#'   \item{field1}{describe}
-#'   \item{field2}{describe}
-#'   \item{field3}{describe}
-#'   ...
-#' }
-#' @source <https://zenodo.org/records/17014313/files/GSE164416_DP_htseq_counts.txt.gz?download=1>
+#' @return A character string representing the local file path to the downloaded resource.
 #' @examples
-#' data(GSE164416_DP_htseq_counts_txt_gz)
-#' head(GSE164416_DP_htseq_counts_txt_gz)
-"GSE164416_DP_htseq_counts_txt_gz"
+#' \dontrun{
+#'   counts_path <- CLAMPData::GSE164416_DP_htseq_counts_txt_gz()
+#'   # You can then use read.table or similar to load the data from this path
+#' }
+#' @export
+GSE164416_DP_htseq_counts_txt_gz <- function() {
+  ExperimentHub::ExperimentHub()[["EH10279"]]
+}
+
 
 #' human_gene_v2_5_alz_h5
 #'
-#' A brief description of this dataset
+#' Retrieves the H5 file (path) containing gene sets and pathway priors from ExperimentHub.
 #'
-#' @format ## `human_gene_v2_5_alz_h5()`
-#' A data frame with x,xxx rows and xx columns:
-#' \describe{
-#'   \item{field1}{describe}
-#'   \item{field2}{describe}
-#'   \item{field3}{describe}
-#'   ...
-#' }
-#' @source <https://zenodo.org/records/17014313/files/human_gene_v2.5_alz.h5?download=1>
+#' @return A character string representing the local file path to the downloaded resource.
 #' @examples
-#' data(human_gene_v2_5_alz_h5)
-#' head(human_gene_v2_5_alz_h5)
-"human_gene_v2_5_alz_h5"
+#' \dontrun{
+#'   h5_path <- CLAMPData::human_gene_v2_5_alz_h5()
+#'   # Use rhdf5::h5read to access the file
+#' }
+#' @export
+human_gene_v2_5_alz_h5 <- function() {
+  ExperimentHub::ExperimentHub()[["EH10280"]]
+}
+
 
 #' islets_metadata_csv
 #'
-#' A brief description of this dataset
+#' Retrieves the metadata CSV file (path) for the islets example from ExperimentHub.
 #'
-#' @format ## `islets_metadata_csv()`
-#' A data frame with x,xxx rows and xx columns:
-#' \describe{
-#'   \item{field1}{describe}
-#'   \item{field2}{describe}
-#'   \item{field3}{describe}
-#'   ...
-#' }
-#' @source <https://zenodo.org/records/17014313/files/islets_metadata.csv?download=1>
+#' @return A character string representing the local file path to the downloaded resource.
 #' @examples
-#' data(islets_metadata_csv)
-#' head(islets_metadata_csv)
-"islets_metadata_csv"
-
-#' @importFrom utils read.csv
-.onLoad <- function(libname, pkgname) {
-  fl <- system.file("extdata", "metadata.csv", package = pkgname)
-  if (file.exists(fl)) {
-    titles <- read.csv(fl, stringsAsFactors = FALSE)$Title
-    titles <- titles[!is.na(titles) & nzchar(titles)]
-    ExperimentHub::createHubAccessors(pkgname, titles)
-  }
+#' \dontrun{
+#'   metadata_path <- CLAMPData::islets_metadata_csv()
+#'   # You can then use read.csv to load the data
+#' }
+#' @export
+islets_metadata_csv <- function() {
+  ExperimentHub::ExperimentHub()[["EH10281"]]
 }
