@@ -13,8 +13,5 @@ A character string representing the local file path to the downloaded resource.
 Retrieves the metadata CSV file (path) for the islets example from ExperimentHub.
 }
 \examples{
-\dontrun{
-  metadata_path <- CLAMPData::islets_metadata_csv()
-  # You can then use read.csv to load the data
-}
+metadata_path <- CLAMPData::islets_metadata_csv()
 }

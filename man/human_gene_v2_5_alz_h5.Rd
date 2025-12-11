@@ -13,8 +13,5 @@ A character string representing the local file path to the downloaded resource.
 Retrieves the H5 file (path) containing gene sets and pathway priors from ExperimentHub.
 }
 \examples{
-\dontrun{
-  h5_path <- CLAMPData::human_gene_v2_5_alz_h5()
-  # Use rhdf5::h5read to access the file
-}
+h5_path <- CLAMPData::human_gene_v2_5_alz_h5()
 }

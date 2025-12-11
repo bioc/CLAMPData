@@ -13,8 +13,5 @@ A character string representing the local file path to the downloaded resource.
 Retrieves the raw count matrix (path to gzipped file) for the GSE164416 dataset from ExperimentHub.
 }
 \examples{
-\dontrun{
-  counts_path <- CLAMPData::GSE164416_DP_htseq_counts_txt_gz()
-  # You can then use read.table or similar to load the data from this path
-}
+counts_path <- CLAMPData::GSE164416_DP_htseq_counts_txt_gz()
 }
