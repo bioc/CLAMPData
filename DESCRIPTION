@@ -1,7 +1,7 @@
 Package: CLAMPData
 Type: Package
 Title: Experiment data for CLAMP package
-Version: 0.99.3
+Version: 0.99.4
 Authors@R:
     c(person("Marc", "Subirana-Granés", role = c("aut", "cre"),
        email = "mb2subi@gmail.com",
@@ -12,15 +12,16 @@ Description: Curated CLAMP resources (latent variables, loadings,
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
-Depends: R (>= 4.4.0)
+Depends: R (>= 4.6.0)
 Imports:
-    ExperimentHub,
+    ExperimentHub
 Suggests:
     ExperimentHubData,
     knitr,
     rmarkdown,
     BiocStyle,
-    rhdf5
+    rhdf5,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 biocViews: ExperimentHub, ExperimentData, RNASeqData, ExpressionData
 BugReports: https://github.com/pivlab/CLAMPData/issues
