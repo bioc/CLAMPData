@@ -1,7 +1,7 @@
 Package: CLAMPData
 Type: Package
 Title: Experiment data for CLAMP package
-Version: 0.99.2
+Version: 0.99.3
 Authors@R:
     c(person("Marc", "Subirana-Granés", role = c("aut", "cre"),
        email = "mb2subi@gmail.com",

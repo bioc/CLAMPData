@@ -7,11 +7,17 @@
 islets_metadata_csv()
 }
 \value{
-A character string representing the local file path to the downloaded resource.
+A character string representing the local file path to the
+  downloaded resource.
 }
 \description{
-Retrieves the metadata CSV file (path) for the islets example from ExperimentHub.
+Retrieves the metadata CSV file (path) for the islets example
+from ExperimentHub.
 }
 \examples{
-metadata_path <- CLAMPData::islets_metadata_csv()
+if (interactive()) {
+    metadata_path <- islets_metadata_csv()
+    print(metadata_path)
+}
+
 }

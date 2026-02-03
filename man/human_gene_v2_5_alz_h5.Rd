@@ -7,11 +7,17 @@
 human_gene_v2_5_alz_h5()
 }
 \value{
-A character string representing the local file path to the downloaded resource.
+A character string representing the local file path to the
+  downloaded resource.
 }
 \description{
-Retrieves the H5 file (path) containing gene sets and pathway priors from ExperimentHub.
+Retrieves the H5 file (path) containing gene sets and pathway priors
+from ExperimentHub.
 }
 \examples{
-h5_path <- CLAMPData::human_gene_v2_5_alz_h5()
+if (interactive()) {
+    h5_path <- human_gene_v2_5_alz_h5()
+    print(h5_path)
+}
+
 }

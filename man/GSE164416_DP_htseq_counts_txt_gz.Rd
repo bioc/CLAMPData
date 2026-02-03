@@ -7,11 +7,17 @@
 GSE164416_DP_htseq_counts_txt_gz()
 }
 \value{
-A character string representing the local file path to the downloaded resource.
+A character string representing the local file path to the
+  downloaded resource.
 }
 \description{
-Retrieves the raw count matrix (path to gzipped file) for the GSE164416 dataset from ExperimentHub.
+Retrieves the raw count matrix (path to gzipped file) for the GSE164416
+dataset from ExperimentHub.
 }
 \examples{
-counts_path <- CLAMPData::GSE164416_DP_htseq_counts_txt_gz()
+if (interactive()) {
+    counts_path <- GSE164416_DP_htseq_counts_txt_gz()
+    print(counts_path)
+}
+
 }
