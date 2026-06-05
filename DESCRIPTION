@@ -14,7 +14,8 @@ Encoding: UTF-8
 LazyData: false
 Depends: R (>= 4.6.0)
 Imports:
-    ExperimentHub
+    ExperimentHub,
+    utils
 Suggests:
     ExperimentHubData,
     knitr,
@@ -26,4 +27,4 @@ VignetteBuilder: knitr
 biocViews: ExperimentHub, ExperimentData, RNASeqData, ExpressionData
 BugReports: https://github.com/pivlab/CLAMPData/issues
 URL: https://github.com/pivlab/CLAMPData
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
