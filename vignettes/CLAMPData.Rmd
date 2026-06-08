@@ -13,8 +13,6 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-library(CLAMPData)
-library(ExperimentHub)
 ```
 
 # Introduction
@@ -22,6 +20,24 @@ library(ExperimentHub)
 This vignette demonstrates how to access data resources provided by **CLAMPData**, the companion ExperimentHub data package for **CLAMP**, through the [ExperimentHub](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html) interface.
 
 CLAMPData provides curated gene-set libraries, pathway priors, and example expression matrices used by the CLAMP software package for prior-informed latent variable modeling.
+
+# Installation
+
+Install CLAMPData from Bioconductor with `BiocManager`:
+
+```{r install, eval=FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("CLAMPData")
+```
+
+# Load packages
+
+```{r load, message=FALSE}
+library(CLAMPData)
+library(ExperimentHub)
+```
 
 # Available Resources
 
@@ -32,6 +48,12 @@ CLAMPData provides three ExperimentHub resources:
 | EH10279 | GSE164416_DP_htseq_counts_txt_gz | HTSeq gene counts for islet RNA-seq example |
 | EH10280 | human_gene_v2_5_alz_h5 | HDF5 file with gene-set priors for CLAMP |
 | EH10281 | islets_metadata_csv | Sample metadata for islet RNA-seq example |
+
+You can also list these resources with `list_clamp_data()`:
+
+```{r list-resources}
+list_clamp_data()
+```
 
 # Accessing data resources
 
@@ -47,26 +69,44 @@ cat("Metadata path:", p_meta, "\n")
 
 # Reading example data
 
-```{r accessors, message=FALSE, warning=FALSE}
+```{r read, message=FALSE, warning=FALSE}
 # --- Counts Data (GSE164416) ---
-counts <- read.delim(gzfile(p_counts), row.names = 1)
-cat("Counts matrix dimensions:", nrow(counts), "genes x", ncol(counts), "samples\n\n")
-knitr::kable(counts[1:5, 1:5], caption = "Gene counts (first 5 genes × 5 samples)")
-
-# --- HDF5 Gene-Set Priors ---
-if (requireNamespace("rhdf5", quietly = TRUE)) {
-  cat("\nHDF5 file structure:\n")
-  knitr::kable(rhdf5::h5ls(p_h5))
-} else {
-  message("Install 'rhdf5' from Bioconductor to inspect HDF5 contents: ",
-          "BiocManager::install('rhdf5')")
-}
+counts <- read_islet_counts()
+cat("Counts dimensions:", nrow(counts), "genes x", ncol(counts) - 1, "samples\n\n")
+knitr::kable(counts[1:5, 1:6], caption = "Gene counts (first 5 genes)")
 
 # --- Sample Metadata ---
-meta <- read.csv(p_meta, stringsAsFactors = FALSE)
-cat("\nMetadata dimensions:", nrow(meta), "samples x", ncol(meta), "variables\n")
+meta <- read_islet_metadata()
+cat("Metadata dimensions:", nrow(meta), "samples x", ncol(meta), "variables\n")
 cat("Sample types:", paste(unique(meta$type), collapse = ", "), "\n\n")
 knitr::kable(head(meta), caption = "Sample metadata (first 6 rows)")
+```
+
+CLAMP HDF5 files follow a fixed layout, shown by `clamp_h5_schema()`:
+
+```{r schema}
+clamp_h5_schema()
+```
+
+`validate_clamp_h5()` checks that a file contains the datasets in this layout. It returns `TRUE` for a valid file and errors otherwise, so you can use it on your own HDF5 files:
+
+```{r validate, message=FALSE}
+if (requireNamespace("rhdf5", quietly = TRUE)) {
+  print(validate_clamp_h5(human_gene_v2_5_alz_h5()))
+}
+```
+
+`read_clamp_alz_expression()` runs this same check, then returns a genes x samples matrix:
+
+```{r expr, message=FALSE, warning=FALSE}
+# --- HDF5 Gene-Set Priors ---
+if (requireNamespace("rhdf5", quietly = TRUE)) {
+  expr <- read_clamp_alz_expression()
+  cat("Expression matrix:", nrow(expr), "genes x", ncol(expr), "samples\n")
+} else {
+    message("Install 'rhdf5' from Bioconductor to inspect HDF5 contents: ",
+          "BiocManager::install('rhdf5')")
+}
 ```
 
 # Session info
